@@ -9,7 +9,7 @@
 
 #include "global.h"
 
-#define TOKEN               "nJPiwgmzksNoWXcJHZMc"
+#define TOKEN               "KguyC6EKJ11LE5I8gG5x"
 #define THINGSBOARD_SERVER  "demo.thingsboard.io"
 
 void TB_Init();

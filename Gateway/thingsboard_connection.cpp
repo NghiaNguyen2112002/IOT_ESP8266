@@ -28,13 +28,15 @@ void on_message(const char* topic, byte* payload, unsigned int length) {
   // memcpy(&dataSend[0], ((const char *)data["method"]), sizeof(dataSend[0]));
 
   String methodName = String((const char*)data["method"]);
-  uint8_t *buffer = (uint8_t*) methodName.c_str();
-  size_t sizeBuff = sizeof(buffer) * methodName.length();
+  String paramsName = String((const char*)data["params"]);
 
-  if((const char*)data["method"] == "1"){
+  uint8_t *buffer = (uint8_t*) paramsName.c_str();
+  size_t sizeBuff = sizeof(buffer) * paramsName.length();
+
+  if(methodName == "TEMP_1" || methodName == "HUMI_1"){
       esp_now_send(broadcastAddress_1, buffer, sizeBuff);
   }
-  else if((const char*)data["method"] == "2"){
+  else if(methodName == "TEMP_2" || methodName == "HUMI_2"){
       esp_now_send(broadcastAddress_2, buffer, sizeBuff);
   }
   Serial.println(methodName);
@@ -60,6 +62,17 @@ void TB_CheckConnection(){
         Serial.println( "[DONE]" );
         // Subscribing to receive RPC requests
         client.subscribe("v1/devices/me/rpc/request/+");
+
+        StaticJsonBuffer<200> jsonBuffer;
+        JsonObject& data = jsonBuffer.createObject();
+        data["active"] = true;
+
+        char payload[256];
+        data.printTo(payload, sizeof(payload));
+        String strPayload = String(payload);
+        Serial.println(strPayload);
+        client.publish("v1/devices/me/attributes", strPayload.c_str());
+  
       } else {
         Serial.print( "[FAILED] [ rc = " );
         Serial.print( client.state() );
@@ -83,5 +96,5 @@ void TB_SendmyData(){
   data.printTo(payload, sizeof(payload));
   String strPayload = String(payload);
   Serial.println(strPayload);
-  client.publish("v1/devices/me/attributes", strPayload.c_str());
+  client.publish("v1/devices/me/telemetry", strPayload.c_str());
 }
