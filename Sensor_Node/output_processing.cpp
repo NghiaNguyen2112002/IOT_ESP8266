@@ -9,16 +9,16 @@ void OUT_Init(){
 }
 
 void OUT_Controller(){
-    if(cmd == "ON_RELAY_HUMI"){
+    if(cmd == "TOO_HUMID"){
       digitalWrite(HUMI_RELAY_PIN, 1);
     }
-    else if(cmd == "OFF_RELAY_HUMI"){
+    else if(cmd == "TOO_DRY"){
       digitalWrite(HUMI_RELAY_PIN, 0);
     }
-    else if(cmd == "ON_RELAY_TEMP"){
+    else if(cmd == "TOO_HOT"){
       digitalWrite(TEMP_RELAY_PIN, 1);
     }
-    else if(cmd == "OFF_RELAY_TEMP"){
+    else if(cmd == "TOO_COLD"){
       digitalWrite(TEMP_RELAY_PIN, 0); 
     }
     else {
