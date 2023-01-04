@@ -8,8 +8,8 @@
 #include "global.h"
 #include "thingsboard_connection.h"
 
-#define WIFI_AP                 "TAN NGOC DANG"
-#define WIFI_PASSWORD           "999999999"
+#define WIFI_AP                 "MANGDAYKTX H1-518"
+#define WIFI_PASSWORD           "20202024"
 
 #define WIFI_GATEWAY_STA        "GATEWAY"
 #define WIFI_GATEWAY_PASS       "123456789"

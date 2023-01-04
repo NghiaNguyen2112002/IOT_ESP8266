@@ -15,6 +15,7 @@ void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
 
 // Callback function that will be executed when data is received
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
+  
   memcpy(&myData, incomingData, sizeof(myData));
   Serial.print("Bytes received: ");
   Serial.println(len);
@@ -24,7 +25,7 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   Serial.println(myData.humi);
   Serial.print("TEMP: ");
   Serial.println(myData.temp);
-     
+  
   TB_SendmyData();
 
 }

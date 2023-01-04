@@ -15,8 +15,9 @@ typedef struct struct_message {
   int sensor_node_id;
   float humi;
   float temp;
+  bool humiRelayState;
+  bool tempRelayState;  
 } struct_message;
-
 
 // Initialize ThingsBoard client
 extern WiFiClient espClient;
@@ -25,6 +26,7 @@ extern PubSubClient client;
 
 // Create a struct_message called myData
 extern struct_message myData; 
+
 
 extern String cmd;
 

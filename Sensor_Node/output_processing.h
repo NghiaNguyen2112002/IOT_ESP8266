@@ -4,6 +4,8 @@
 
 #include <ESP8266WiFi.h>
 #include "global.h"
+#include <espnow.h>
+
 
 #define HUMI_RELAY_PIN      D5
 #define TEMP_RELAY_PIN      D6

@@ -15,6 +15,8 @@ typedef struct struct_message {
   int sensor_node_id;
   float humi;
   float temp;
+  bool humiRelayState;
+  bool tempRelayState;
 } struct_message;
 
 
@@ -28,4 +30,5 @@ extern String cmd;
 
 // REPLACE WITH THE MAC Address of your receiver 
 extern uint8_t broadcastAddress[];
+
 #endif

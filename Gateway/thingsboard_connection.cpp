@@ -91,10 +91,13 @@ void TB_SendmyData(){
   data["ID"] = myData.sensor_node_id;
   data["TEMP_" + String(myData.sensor_node_id)] = myData.temp;
   data["HUMI_" + String(myData.sensor_node_id)] = myData.humi;
+  data["TEMP_RELAY_STATE_" + String(myData.sensor_node_id)] = myData.tempRelayState;
+  data["HUMI_RELAY_STATE_" + String(myData.sensor_node_id)] = myData.humiRelayState;
 
   char payload[256];
   data.printTo(payload, sizeof(payload));
   String strPayload = String(payload);
   Serial.println(strPayload);
   client.publish("v1/devices/me/telemetry", strPayload.c_str());
+  
 }

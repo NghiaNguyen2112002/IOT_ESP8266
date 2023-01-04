@@ -4,27 +4,31 @@ void OUT_Init(){
   pinMode(HUMI_RELAY_PIN, OUTPUT);
   pinMode(TEMP_RELAY_PIN, OUTPUT);
 
-  digitalWrite(HUMI_RELAY_PIN, 0);
-  digitalWrite(TEMP_RELAY_PIN, 0);
+  digitalWrite(HUMI_RELAY_PIN, 1);
+  digitalWrite(TEMP_RELAY_PIN, 1);
 }
 
 void OUT_Controller(){
     if(cmd == "TOO_HUMID"){
-      digitalWrite(HUMI_RELAY_PIN, 1);
+      myData.humiRelayState = true;
+      digitalWrite(HUMI_RELAY_PIN, 0);
     }
     else if(cmd == "TOO_DRY"){
-      digitalWrite(HUMI_RELAY_PIN, 0);
+      myData.humiRelayState = false;
+      digitalWrite(HUMI_RELAY_PIN, 1);
     }
     else if(cmd == "TOO_HOT"){
-      digitalWrite(TEMP_RELAY_PIN, 1);
-    }
-    else if(cmd == "TOO_COLD"){
-      digitalWrite(TEMP_RELAY_PIN, 0); 
-    }
-    else {
-      digitalWrite(HUMI_RELAY_PIN, 0);
+      myData.tempRelayState = true;
       digitalWrite(TEMP_RELAY_PIN, 0);
     }
-
-  
+    else if(cmd == "TOO_COLD"){
+      myData.tempRelayState = false;
+      digitalWrite(TEMP_RELAY_PIN, 1); 
+    }
+    else {
+      myData.tempRelayState = false;
+      myData.humiRelayState = false;
+      digitalWrite(HUMI_RELAY_PIN, 1);
+      digitalWrite(TEMP_RELAY_PIN, 1);
+    }
 }
